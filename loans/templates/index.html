@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load bootstrap5 %}
+
+    {% bootstrap_css %}
+
+    {% bootstrap_javascript %}
+
+    {% bootstrap_messages %}
+
+    <title>DFCU Banking</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem; align-items:center">
+                    <div class="card-body">
+                      <h5 class="card-title" style="text-align:center">{{total_requests}}</h5>
+                      <p class="card-text" style="text-align:center">Total Requests</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem; align-items:center">
+                    <div class="card-body">
+                      <h5 class="card-title" style="text-align:center">{{failed_requests}}</h5>
+                      <p class="card-text" style="text-align:center">Positive Requests</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem; align-items:center">
+                    <div class="card-body">
+                      <h5 class="card-title" style="text-align:center">{{successful_request}}</h5>
+                      <p class="card-text" style="text-align:center">Negative Requests</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div>
+            <h5>Recent Validation Requests</h5>
+        <div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Request Status</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in validation_requests %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{item.account_number}}</td>
+                        <td>
+                            {% if item.status == 'success' %}
+                                <span class="badge bg-success">Success</span>
+                            {%else%}
+                                <span class="badge bg-danger">Failed</span>
+                            {% endif %}
+
+                        </td>
+                        <td>{{item.date}}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        
+    </div>
+</body>
+</html>

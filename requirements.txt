@@ -5,3 +5,4 @@ requests
 django-cors-headers
 Pillow
 django-bootstrap-v5
+django-factory_boy

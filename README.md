@@ -1,4 +1,4 @@
-# Setting up the DFCU Loans validation system
+# DFCU Loans validation system
 
 This README file provides instructions for setting up and run the system. These instructions assume that you have basic knowledge of Python and the command line.
 
@@ -77,7 +77,7 @@ Open your web browser and go to <http://127.0.0.1:8000/dashboard>. You should se
 ![dashboard](https://user-images.githubusercontent.com/37125096/230707376-ffd7281a-2903-443f-b9cd-4788251cb2b1.jpg)
 
 ## Test API
-To use the api you need an api client tool like postman, insomia or you can use curl. In the url section enter <http://127.0.0.1:8000/loans> and pass the user account_number in the request body as a JSON object. We already seeded the database so their should be dummy data for testing. Use the customer wamozo cosmas with account number 3459871348:
+To use the api you need an api client tool like postman, insomia or you can use curl and make a post request to the url <http://127.0.0.1:8000/loans> and pass the user account_number in the request body as a JSON object. We already seeded the database so their should be dummy data for testing. Use the customer wamozo cosmas with account number 3459871348:
 ![valid_account_number](https://user-images.githubusercontent.com/37125096/230707490-f5699254-2a71-4a70-a237-f82f69276428.jpg)
 
 To test the scenario for auser with no loans available use the account for muhumuza joshua with account number 2348765156:
@@ -89,4 +89,10 @@ If you provide an invalid account number(with characters less than or greater th
 Incase you provide a null account number(client didn't provide account number), the response below will be sent back:
 ![empty_number](https://user-images.githubusercontent.com/37125096/230707896-25baee82-87f2-4bf6-a359-f66312e00bce.jpg)
 
+## Simulate Requests
+Use your api client(postman,insomia or curl) to make a get request to  url  <http://127.0.0.1:8000/simulate_request>. Dummy account numbers already exist in the account_numbers.json file. You can add as many as you want. 
+![simulate](https://user-images.githubusercontent.com/37125096/230741218-57e145a0-bbaa-4775-b43e-f8c7cca664e4.jpg)
+
+The responses of the simulated requests will be saved in the results.txt file in the project root directory. You don't have to create the file. It will be created automatically if it doesn't exist
+![results txt](https://user-images.githubusercontent.com/37125096/230741258-2a95d5cb-1afd-4aee-b43f-6c4de6c3fafb.jpg)
 

@@ -74,3 +74,19 @@ Starting development server at <http://127.0.0.1:8000/>
 Quit the server with CONTROL-C.
 
 Open your web browser and go to <http://127.0.0.1:8000/dashboard>. You should see the dahsboard
+![dashboard](https://user-images.githubusercontent.com/37125096/230707376-ffd7281a-2903-443f-b9cd-4788251cb2b1.jpg)
+
+## Test API
+To use the api you need an api client tool like postman, insomia or you can use curl. In the url section enter <http://127.0.0.1:8000/loans> and pass the user account_number in the request body as a JSON object. We already seeded the database so their should be dummy data for testing. Use the customer wamozo cosmas with account number 3459871348:
+![valid_account_number](https://user-images.githubusercontent.com/37125096/230707490-f5699254-2a71-4a70-a237-f82f69276428.jpg)
+
+To test the scenario for auser with no loans available use the account for muhumuza joshua with account number 2348765156:
+![no_loan_found](https://user-images.githubusercontent.com/37125096/230707596-15b3af05-957d-4c02-b4a3-fc5baca294f2.jpg)
+
+If you provide an invalid account number(with characters less than or greater than 10). You will get the response below:
+![inavlid_number](https://user-images.githubusercontent.com/37125096/230707789-fc450214-a9d8-4d41-83e8-b32123f68e8c.jpg)
+
+Incase you provide a null account number(client didn't provide account number), the response below will be sent back:
+![empty_number](https://user-images.githubusercontent.com/37125096/230707896-25baee82-87f2-4bf6-a359-f66312e00bce.jpg)
+
+

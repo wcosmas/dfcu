@@ -90,7 +90,7 @@ Incase you provide a null account number(client didn't provide account number), 
 ![empty_number](https://user-images.githubusercontent.com/37125096/230707896-25baee82-87f2-4bf6-a359-f66312e00bce.jpg)
 
 ## Simulate Requests
-Use your api client(postman,insomia or curl) to make a get request to  url  <http://127.0.0.1:8000/simulate_request>. Dummy account numbers already exist in the account_numbers.json file. You can add as many as you want. 
+Use your api client(postman,insomia or curl) to make a get request to  url  <http://127.0.0.1:8000/simulate_request/>. Dummy account numbers already exist in the account_numbers.json file. You can add as many as you want. 
 ![simulate](https://user-images.githubusercontent.com/37125096/230741218-57e145a0-bbaa-4775-b43e-f8c7cca664e4.jpg)
 
 The responses of the simulated requests will be saved in the results.txt file in the project root directory. You don't have to create the file. It will be created automatically if it doesn't exist

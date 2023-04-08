@@ -2,12 +2,17 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
+import requests
+import json
+import os
 
 
 from .serializers import LoanSerializer, AccountNumberSerializer
 from .models import Loan
 from customers.models import Customer
 from validations.models import Validation
+from django.conf import settings
+
 
 # Create your views here.
 
@@ -64,3 +69,40 @@ def view_dashboard(request):
     }
 
     return render(request, 'index.html', context)
+
+
+@api_view(["GET"])
+def simulate(request, *args, **kwargs):
+   # Open the JSON file and read its contents
+    with open('account_numbers.json', 'r') as file:
+        data = file.read()
+
+    # Parse the JSON data into a Python dictionary
+    json_data = json.loads(data)
+
+    for item in json_data["account_numbers"]:
+        endpoint = "http://127.0.0.1:8000/loans/"
+        data = {
+            "account_number": item
+        }
+        response = requests.post(endpoint, json=data)
+        response_string = str(response.json())
+
+        # Define the path to the file relative to the Django root directory
+        filename = 'results.txt'
+        filepath = os.path.join(settings.BASE_DIR, filename)
+        # Check if the file exists
+        if os.path.exists(filepath):
+            # Open the file in append mode to add more data to it
+            with open(filename, 'a') as file:
+                # Append some more data to the file
+                file.write(
+                    f'Account Number: {item}  Response: {response_string}\n')
+        else:
+            # Open the file in write mode and create it if it doesn't exist
+            with open(filename, 'w') as file:
+                # Write some data to the file
+                file.write(
+                    f'Account Number: {item}  Response: {response_string}\n')
+
+    return Response({"message": "Requests simulated successfully check results.txt file in root directory to see the responses"}, status=200)

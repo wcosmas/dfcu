@@ -1,9 +1,10 @@
 from django.urls import path
 
 
-from .views import get_loans
+from .views import get_loans, simulate
 
 
 urlpatterns = [
-    path('', get_loans)
+    path('', get_loans),
+    path('simulate_request/', simulate)
 ]
